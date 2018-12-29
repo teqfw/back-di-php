@@ -1,17 +1,18 @@
 <?php
 /**
- * User: Alex Gusev <alex@flancer64.com>
+ * Authors: Alex Gusev <alex@flancer64.com>
+ * Since: 2018
  */
 
-namespace Test\TeqFw\Arc\Di;
+namespace Test\TeqFw\Lib\Di\Api;
 
-class ContainerTest
+class ContainerFactoryTest
     extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstruct()
     {
-        $obj = new \TeqFw\Arc\Di\Container();
+        $obj = \TeqFw\Lib\Di\Api\ContainerFactory::getContainer();
         $this->assertNotNull($obj);
 
         /* container should has PSR-11 implementation */
