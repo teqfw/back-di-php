@@ -10,4 +10,5 @@ Create classes based on TeqFW conventions:
 ## Usage 
 
     $container = \TeqFw\Lib\Di\Api\ContainerFactory::getContainer();
-    $repoUser = $container->get(\Vendor\Path\To\Module\Api\Db\Repo\User::class)
+    /** @var \Vendor\Path\To\Module\Db\Repo\User $user */
+    $user = $container->get(\Vendor\Path\To\Module\Api\Db\Repo\User::class)
