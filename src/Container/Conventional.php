@@ -6,8 +6,6 @@
 
 namespace TeqFw\Lib\Di\Container;
 
-use Interop\Container\ContainerInterface as InteropContainerInterface;
-
 /**
  * Container to create concrete classes from API interfaces.
  *
@@ -15,34 +13,34 @@ use Interop\Container\ContainerInterface as InteropContainerInterface;
  */
 class Conventional
     implements
-    \League\Container\ImmutableContainerInterface,
-    \League\Container\ImmutableContainerAwareInterface
+    \Psr\Container\ContainerInterface,
+    \League\Container\ContainerAwareInterface
 {
     private const KEY_API = '\\Api\\';
 
     /**
      * Internal container
      *
-     * @var InteropContainerInterface
+     * @var \Psr\Container\ContainerInterface
      */
     private $container;
 
-    public function get($id, array $args = [])
+    public function get($id, bool $new = false)
     {
         $alias = $this->normalizeId($id);
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
-        $result = $this->container->get($alias, $args);
+        $result = $this->container->get($alias, $new);
         return $result;
     }
 
-    public function getContainer()
+    public function getContainer(): \Psr\Container\ContainerInterface
     {
         return $this->container;
     }
 
-    public function setContainer(InteropContainerInterface $container)
+    public function setContainer(\Psr\Container\ContainerInterface $container): \League\Container\ContainerAwareInterface
     {
         $this->container = $container;
+        return $this;
     }
 
     public function has($id)

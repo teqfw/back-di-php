@@ -24,22 +24,28 @@ class ContainerFactory
      */
     public function __construct()
     {
-        /* base container is a League container */
-        $container = new \League\Container\Container();
-        /* add TeqFW conventional container */
-        $convention = new \TeqFw\Lib\Di\Container\Conventional();
-        $container->delegate($convention);
-        /* add reflection container */
-        $reflection = new \League\Container\ReflectionContainer();
-        $container->delegate($reflection);
-        /* link interfaces with object to get container by interface name */
-        $container->share(\Psr\Container\ContainerInterface::class, $container);
-        /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-        $container->share(\TeqFw\Lib\Di\Api\Container::class, $container);
+        if (!self::$container) {
+            /* base container is a League container */
+            $container = new \League\Container\Container();
+            /* add TeqFW conventional container */
+            $convention = new \TeqFw\Lib\Di\Container\Conventional();
+            $container->delegate($convention);
+            /* add reflection container */
+            $reflection = new \League\Container\ReflectionContainer();
+            $container->delegate($reflection);
+            /* link interfaces with object to get container by interface name */
+            $container->share(\Psr\Container\ContainerInterface::class, $container);
+            /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+            $container->share(\TeqFw\Lib\Di\Api\Container::class, $container);
+
+            /* set as singleton */
+            self::$container = $container;
+        }
+
     }
 
     /**
-     * @return \League\Container\ContainerInterface
+     * @return \Psr\Container\ContainerInterface
      */
     public static function getContainer()
     {

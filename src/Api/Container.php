@@ -10,7 +10,7 @@ namespace TeqFw\Lib\Di\Api;
  * PSR-11 compatible container with TeqFW features.
  */
 interface Container
-    extends \League\Container\ContainerInterface
+    extends \Psr\Container\ContainerInterface
 {
 
 }
