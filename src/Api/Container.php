@@ -12,5 +12,13 @@ namespace TeqFw\Lib\Di\Api;
 interface Container
     extends \Psr\Container\ContainerInterface
 {
+    /**
+     * @see \League\Container\Container::add
+     *
+     * @param string $id
+     * @param null $concrete
+     * @param bool|null $shared
+     */
+    public function add(string $id, $concrete = null, bool $shared = null);
 
 }

@@ -45,7 +45,7 @@ class ContainerFactory
     }
 
     /**
-     * @return \Psr\Container\ContainerInterface
+     * @return \TeqFw\Lib\Di\Api\Container
      */
     public static function getContainer()
     {
