@@ -26,7 +26,7 @@ class ContainerFactory
     {
         if (!self::$container) {
             /* base container is a League container */
-            $container = new \League\Container\Container();
+            $container = new \TeqFw\Lib\Di\Container();
             /* add TeqFW conventional container */
             $convention = new \TeqFw\Lib\Di\Container\Conventional();
             $container->delegate($convention);
