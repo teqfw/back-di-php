@@ -13,5 +13,11 @@ class Container
     extends \League\Container\Container
     implements \TeqFw\Lib\Di\Api\Container
 {
+    public function populate(string $interface, string $class)
+    {
+        $obj = $this->get($class);
+        assert($obj instanceof $interface);
+        $this->share($interface, $obj);
+    }
 
 }

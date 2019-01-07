@@ -21,4 +21,20 @@ interface Container
      */
     public function add(string $id, $concrete = null, bool $shared = null);
 
+    /**
+     *
+     * @see \League\Container\Container::share
+     *
+     * @param string $id
+     * @param null $concrete
+     */
+    public function share(string $id, $concrete = null);
+
+    /**
+     * Create object for given $class and put it into container as implementation of $interface.
+     *
+     * @param string $interface
+     * @param string $class
+     */
+    public function populate(string $interface, string $class);
 }
